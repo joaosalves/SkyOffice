@@ -2,11 +2,10 @@ import https from 'https'
 import fs from 'fs'
 import express from 'express'
 import cors from 'cors'
+import path from 'path' // Novo
 import { Server, LobbyRoom } from 'colyseus'
 import { monitor } from '@colyseus/monitor'
 import { RoomType } from '../types/Rooms'
-
-// import socialRoutes from "@colyseus/social/express"
 
 import { SkyOffice } from './rooms/SkyOffice'
 
@@ -15,9 +14,8 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-// app.use(express.static('dist'));
 
-// Usar os certificados SSL válidos para o domínio
+// Configuração de HTTPS
 const httpsOptions = {
   key: fs.readFileSync('/etc/letsencrypt/live/office.px.center/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/office.px.center/fullchain.pem'),
@@ -28,7 +26,10 @@ const gameServer = new Server({
   server,
 })
 
-// register room handlers
+// Serve os arquivos estáticos do Next.js
+app.use(express.static(path.join(__dirname, '../client/dist')))
+
+// Configuração padrão do Colyseus
 gameServer.define(RoomType.LOBBY, LobbyRoom)
 gameServer.define(RoomType.PUBLIC, SkyOffice, {
   name: 'Public Lobby',
@@ -38,16 +39,13 @@ gameServer.define(RoomType.PUBLIC, SkyOffice, {
 })
 gameServer.define(RoomType.CUSTOM, SkyOffice).enableRealtimeListing()
 
-/**
- * Register @colyseus/social routes
- *
- * - uncomment if you want to use default authentication (https://docs.colyseus.io/server/authentication/)
- * - also uncomment the import statement
- */
-// app.use("/", socialRoutes);
-
-// register colyseus monitor AFTER registering your room handlers
+// Rotas Colyseus
 app.use('/colyseus', monitor())
+
+// Captura todas as outras rotas e envia para o cliente
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/out/index.html'))
+})
 
 gameServer.listen(port)
 console.log(`Listening on wss://office.px.center:${port}`)
