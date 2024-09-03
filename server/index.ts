@@ -50,4 +50,4 @@ gameServer.define(RoomType.CUSTOM, SkyOffice).enableRealtimeListing()
 app.use('/colyseus', monitor())
 
 gameServer.listen(port)
-console.log(`Listening on wss://localhost:${port}`)
+console.log(`Listening on wss://office.px.center:${port}`)
