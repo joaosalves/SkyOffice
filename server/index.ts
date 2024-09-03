@@ -1,4 +1,5 @@
-import http from 'http'
+import https from 'https'
+import fs from 'fs'
 import express from 'express'
 import cors from 'cors'
 import { Server, LobbyRoom } from 'colyseus'
@@ -16,7 +17,13 @@ app.use(cors())
 app.use(express.json())
 // app.use(express.static('dist'))
 
-const server = http.createServer(app)
+// Carregar o certificado SSL e a chave privada
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/office.px.center/privkey.pem', 'utf8')
+const certificate = fs.readFileSync('/etc/letsencrypt/live/office.px.center/fullchain.pem', 'utf8')
+
+const credentials = { key: privateKey, cert: certificate }
+
+const server = https.createServer(credentials, app)
 const gameServer = new Server({
   server,
 })
@@ -43,4 +50,4 @@ gameServer.define(RoomType.CUSTOM, SkyOffice).enableRealtimeListing()
 app.use('/colyseus', monitor())
 
 gameServer.listen(port)
-console.log(`Listening on ws://localhost:${port}`)
+console.log(`Listening on wss://office.px.center:${port}`)
