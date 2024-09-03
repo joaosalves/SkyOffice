@@ -15,15 +15,15 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-// app.use(express.static('dist'))
+// app.use(express.static('dist'));
 
-// Carregar o certificado SSL e a chave privada
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/office.px.center/privkey.pem', 'utf8')
-const certificate = fs.readFileSync('/etc/letsencrypt/live/office.px.center/fullchain.pem', 'utf8')
+// Usar os certificados SSL válidos para o domínio
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/office.px.center/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/office.px.center/fullchain.pem'),
+}
 
-const credentials = { key: privateKey, cert: certificate }
-
-const server = https.createServer(credentials, app)
+const server = https.createServer(httpsOptions, app)
 const gameServer = new Server({
   server,
 })
