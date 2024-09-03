@@ -23,8 +23,12 @@ export class ComputerRemoveUserCommand extends Command<IOfficeState, Payload> {
     const { client, computerId } = data
     const computer = this.state.computers.get(computerId)
 
-    if (computer.connectedUser.has(client.sessionId)) {
+    if (computer && computer.connectedUser.has(client.sessionId)) {
       computer.connectedUser.delete(client.sessionId)
+    } else {
+      console.warn(
+        `Computer with ID ${computerId} not found or session ID ${client.sessionId} not connected`
+      )
     }
   }
 }
