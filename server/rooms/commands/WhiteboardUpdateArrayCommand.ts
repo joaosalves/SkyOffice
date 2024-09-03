@@ -23,8 +23,12 @@ export class WhiteboardRemoveUserCommand extends Command<IOfficeState, Payload> 
     const { client, whiteboardId } = data
     const whiteboard = this.state.whiteboards.get(whiteboardId)
 
-    if (whiteboard.connectedUser.has(client.sessionId)) {
+    if (whiteboard && whiteboard.connectedUser.has(client.sessionId)) {
       whiteboard.connectedUser.delete(client.sessionId)
+    } else {
+      console.warn(
+        `Whiteboard with ID ${whiteboardId} not found or session ID ${client.sessionId} not connected`
+      )
     }
   }
 }
