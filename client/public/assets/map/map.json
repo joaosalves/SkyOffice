@@ -55,6 +55,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":50,
          "id":2,
+         "locked":true,
          "name":"Ground",
          "opacity":1,
          "type":"tilelayer",
@@ -66,6 +67,7 @@
         {
          "draworder":"topdown",
          "id":3,
+         "locked":true,
          "name":"Wall",
          "objects":[
                 {
@@ -521,7 +523,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1022.66666666667,
+                 "x":1022.67,
                  "y":288
                 }, 
                 {
@@ -929,6 +931,7 @@
         {
          "draworder":"topdown",
          "id":4,
+         "locked":true,
          "name":"Chair",
          "objects":[
                 {
@@ -2236,6 +2239,7 @@
         {
          "draworder":"topdown",
          "id":5,
+         "locked":true,
          "name":"Objects",
          "objects":[
                 {
@@ -3447,6 +3451,7 @@
         {
          "draworder":"topdown",
          "id":7,
+         "locked":true,
          "name":"ObjectsOnCollide",
          "objects":[
                 {
@@ -10772,6 +10777,7 @@
         {
          "draworder":"topdown",
          "id":6,
+         "locked":true,
          "name":"GenericObjects",
          "objects":[
                 {
@@ -11215,7 +11221,6 @@
         {
          "draworder":"topdown",
          "id":9,
-         "locked":true,
          "name":"Computer",
          "objects":[
                 {
@@ -11639,9 +11644,9 @@
                  "y":896
                 }, 
                 {
-                 "gid":4682,
+                 "gid":4683,
                  "height":64,
-                 "id":3225,
+                 "id":3642,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -11659,6 +11664,7 @@
         {
          "draworder":"topdown",
          "id":10,
+         "locked":true,
          "name":"Whiteboard",
          "objects":[
                 {
@@ -11766,6 +11772,7 @@
         {
          "draworder":"topdown",
          "id":13,
+         "locked":true,
          "name":"Basement",
          "objects":[
                 {
@@ -12339,7 +12346,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":3642,
+ "nextobjectid":3643,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
