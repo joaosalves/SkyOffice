@@ -120,7 +120,7 @@ export default class OtherPlayer extends Player {
       }
     }
 
-    const speed = 400 // speed is in unit of pixels per second
+    const speed = 250 // speed is in unit of pixels per second
     const delta = (speed / 1000) * dt // minimum distance that a player can move in a frame (dt is in unit of ms)
     let dx = this.targetPosition[0] - this.x
     let dy = this.targetPosition[1] - this.y
