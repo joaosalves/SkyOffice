@@ -2,14 +2,14 @@ import https from 'https'
 import fs from 'fs'
 import express from 'express'
 import cors from 'cors'
-import path from 'path' // Novo
+import path from 'path'
 import { Server, LobbyRoom } from 'colyseus'
 import { monitor } from '@colyseus/monitor'
 import { RoomType } from '../types/Rooms'
 
 import { SkyOffice } from './rooms/SkyOffice'
 
-const port = Number(process.env.PORT || 2567)
+const port = Number(process.env.PORT || 443)
 const app = express()
 
 app.use(cors())
@@ -44,8 +44,8 @@ app.use('/colyseus', monitor())
 
 // Captura todas as outras rotas e envia para o cliente
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/out/index.html'))
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 })
 
 gameServer.listen(port)
-console.log(`Listening on wss://office.px.center:${port}`)
+console.log(`Listening on wss://office.px.center`)
