@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import logo from '../images/logo.png'
 import styled from 'styled-components'
 import Button from '@mui/material/Button'
@@ -182,15 +182,15 @@ export default function RoomSelectionDialog() {
               <Title>Welcome to SkyOffice</Title>
               <Content>
                 <img src={logo} alt="logo" />
-                <Button variant="contained" color="secondary" onClick={handleConnect}>
+                {/* <Button variant="contained" color="secondary" onClick={handleConnect}>
                   Connect to public lobby
-                </Button>
+                </Button> */}
                 <Button
                   variant="outlined"
                   color="secondary"
                   onClick={() => (lobbyJoined ? setShowCustomRoom(true) : setShowSnackbar(true))}
                 >
-                  Create/find custom rooms
+                  Find custom rooms
                 </Button>
               </Content>
             </>
